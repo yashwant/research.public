@@ -6,7 +6,7 @@ date: 2014-06-07 11:47
 comments: true
 categories: [devops]
 tags: [frank, greendog, jekyll, mercury, middleman, nanoc, serve, staticmatic]
-published: false
+published: true
 ---
 
 # Using Static Site Generators for web development
