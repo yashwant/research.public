@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Bots"
-slug: "research-bots"
+title: "Using bots for automatization"
+slug: "research-using-bots-for-automatization"
 date: 2014-06-07 11:34
 comments: true
 categories: [coding]
