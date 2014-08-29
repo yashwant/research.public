@@ -19,8 +19,22 @@ published: true
   * Your Sketch file needs to be saved (once) before you run Framer Generator
   * Multiple Pages are not supported. Use Artboards instead.
   * Multiple Artboards are supported, but only the first one will be visible. You’ll need to enable visibility in your code. For your convenience, the position for all Artboard is set to {0,0} on export, so you can easily use them for i.e: state switching.
-* [Simple grunt script for working with Framer.js locally](https://gist.github.com/jmwhittaker/8932690)
+* [Simple grunt script for working with Framer.js locally](https://gist.github.com/jmwhittaker/8932690) (if you do not want to use Framer Studio)
+* [Framer examples](http://examples.framerjs.com)
+* [List of Framer examples to work on (Hackpad)](https://hackpad.com/Framer-Examples-y5piZ6FgfT9)
 * [Framer View](http://framerview.com/), "The best way to view Framer.js prototypes on iPhone."
+
+### State Machine
+
+> A new feature in Framer 3, the state machine is incredibly powerful and useful. It allows you to add multiple states to a layer. Think of a state as a set of one or more properties for the layer. A layer can have multiple states, you can add and remove them, and switch or animate between states. All of the states for a layer can have the same animation properties as well, such as the animation curve. You can access any state for a layer at any time. Layers also have a 'default' state as well, which are the properties of the layer at time of creation.
+
+Source: [Framer Studio Basics](http://framerjs.com/learn.html#basics)
+
+### Framer Studio
+
+* only works with Cofee Script
+  * Code School CoffeeScript Course
+  * The Little Book on CoffeeScript
 
 ### Helpers
 
@@ -35,7 +49,7 @@ published: true
 * **Video** [Framer keyframes](https://cloudup.com/cMVEFBnFnqQ)
 * [Prototyping swipe and drag gestures with Framer 3](https://medium.com/framer-js/2e405d50b600)
 * [Prototyping with the motion sensor using Framer.js](https://medium.com/@gem_ray/prototyping-with-the-motion-sensor-using-framer-js-d3f4811c36d6)
-* [Web apps deserve sexy transitions too!](https://medium.com/framer-js/8068a5e4cb82)
+* [Web apps deserve sexy transitions too!](https://medium.com/framer-js/8068a5e4cb82). Tutorial to combine Angular.js with Framer.
 * [Framer.js tips](https://medium.com/framer-js/framer-js-tips-ca55fc7cfc61)
 
 ## Other tools
