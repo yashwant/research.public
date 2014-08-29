@@ -47,7 +47,7 @@ These images can either be defined by Dockerfiles or by commiting a container. W
 
 We need a way to share our images with other locations: enter the registry.
 
-Docker provides a public hub where you can upload and share your images. (https://hub.docker.com/) You get one free private repository and unlimited public repositories. You could also host your own registry, more instructions can be found here: http://blog.docker.com/2013/07/how-to-use-your-own-registry/
+Docker provides a [public hub]((https://hub.docker.com/)) where you can upload and share your images. You get one free private repository and unlimited public repositories. You could also host your own registry, more instructions can be found [here](http://blog.docker.com/2013/07/how-to-use-your-own-registry/).
 
 Once the image is on a registry, you can run the same container on another location.
 
@@ -71,9 +71,9 @@ It is possible to turn a container into an image by using the docker commit comm
 Simple example:
 
 * `docker run ubuntu:14.04 date`
-	* `docker run` means execute the run command
-	* `ubuntu:14.04` instantiate a container of Ubuntu version 14.04
-	* `date` is the command that our container will execute
+	* `docker run` - means execute the run command
+	* `ubuntu:14.04` - instantiate a container of Ubuntu version 14.04
+	* `date` - is the command that our container will execute
 
 ### Lifecycle
 
@@ -88,14 +88,14 @@ Simple example:
 * `docker wait` - blocks until container stops
 * `docker remove <container name>`
 * `docker run -t -i -p 8080:80 kristofdm/lamp /bin/bash`
-	* `docker run` means execute the run command
-	* `-t` means that we want a tty to be applied
-	* `-i` means that we want to be able to interact with our container
-	* `-p` port mapping! host_port:container_port. Our websites will be available at localhost:8080
+	* `docker run` - means execute the run command
+	* `-t` - means that we want a tty to be applied
+	* `-i` - means that we want to be able to interact with our container
+	* `-p` - port mapping! host_port:container_port. Our websites will be available at localhost:8080
 	* `kristofdm/lamp` is a simple LAMP image
 	* `bin/bash` is the command that the container will execute
 * `docker run -p 8080:80 -v /home/drupal-7.28:/var/www/ kristofdm/drupal:latest /start.sh`
-	* `-v` stands for volume. In this case, a volume shared between the host and the container.
+	* `-v` - stands for volume. In this case, a volume shared between the host and the container.
 * If you want a transient container, `docker run -rm` will remove the container after it stops.
 
 ### Info
