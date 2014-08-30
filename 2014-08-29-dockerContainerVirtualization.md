@@ -2,7 +2,7 @@
 layout: post
 title: "Docker Container Virtualization"
 slug: "research-docker-container-virtualization"
-date: 2014-08-29 11:52
+date: 2014-08-30 11:00
 comments: true
 categories: [virtualization]
 tags: [docker, virtualization, devops, container, lxc]
@@ -42,6 +42,12 @@ Organizations that use Docker are e.g. Atlassian, eBay, Gilt, Groupon, RelateIQ,
 Docker images are basically a read-only template out of which docker containers are instantiated. Images contain all the information on a certain type of container.
 
 These images can either be defined by Dockerfiles or by commiting a container. When trying to run a container, docker will automatically download the image you specified. This will become more clear at the examples.
+
+#### Base images
+
+* [phusion/baseimage-docker](http://phusion.github.io/baseimage-docker/), comes with init processes for syslog-ng, cron daemon, sshd, runit
+	* Github: [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
+	* Docker registry: [phusion/baseimage](https://registry.hub.docker.com/u/phusion/baseimage/)
 
 ### Registries - Distribution component
 
@@ -233,6 +239,15 @@ Boot2docker is a small script that helps download and setup a minimal Linux VM t
 	boot2docker up
 	export DOCKER_HOST=tcp://localhost:4243
 	# docker will be automatically too, since it is a boot2docker dependancy
+
+#### Share folders with boot2docker
+
+Usually you can not use *Shared Folders* with boot2docker. Though there are still a few workarounds…
+
+* [dduportal / boot2docker](https://vagrantcloud.com/dduportal/boot2docker) - this a box for running boot2docker with a virtual box shared folder capability. Usage : `vagrant init dduportal/boot2docker && vagrant up`
+* through containers…
+	* access via NFS: `docker pull cpuguy83/nfs-server` and then `docker run -d --name nfs --privileged cpuguy83/nfs-server /path/to/share
+	* access via Samba `docker pull svendowideit/samba` and then `docker run svendowideit/samba data`
 
 ### Option 2: Install CoreOS with Vagrant
 
