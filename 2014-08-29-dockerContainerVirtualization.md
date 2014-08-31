@@ -5,7 +5,7 @@ slug: "research-docker-container-virtualization"
 date: 2014-08-30 11:00
 comments: true
 categories: [virtualization]
-tags: [docker, virtualization, devops, container, lxc]
+tags: [docker, virtualization, devops, container, lxc, libcontainer]
 published: true
 ---
 
@@ -18,13 +18,17 @@ This has benefits for several groups of people:
 * Sysadmins can deploy and run any app on any infrastructure (that supports docker) quickly and reliably.
 * Developers can easily test and develop applications in a docker containers that can be distributed to other developers and even staging/production. This way the typical "it worked in dev/on my laptop" can be avoided.
 
-Docker extends Linux Containers (LXC) with a high-level API providing lightweight virtualization that runs processes in isolation. Containers offer quite some pros over virtual machines e.g. :
+Docker includes the [libcontainer](https://github.com/docker/libcontainer) library as a reference implementation for containers, and builds on top of libvirt, LXC (Linux containers) and systemd-nspawn, which provide interfaces to the facilities provided by the Linux kernel. 
+
+![How libcontainer works with Linux services](http://cdn-static.zdnet.com/i/r/story/70/00/030397/libcontainer-diagram-620x465.png?hash=AGV3ZTD3Lw&upscale=1)
+
+[Source (image)](http://www.zdnet.com/docker-libcontainer-unifies-linux-container-powers-7000030397/)
+
+Containers offer quite some pros over virtual machines e.g. :
 
 * You don't need an entire seperate operating system for your application
 * Setting up containers is a lot faster than setting up a VM
 * Containers are less resource hungry than VMs. They only take up as much memory/CPU as they need.
-
-Competitors are e.g. Googles **[Kubernetes](https://github.com/GoogleCloudPlatform/kubernetes)** which looks a lot like a consumer version of their own internal [Omega](http://research.google.com/pubs/pub41684.html) scheduler.
 
 Organizations that use Docker are e.g. Atlassian, eBay, Gilt, Groupon, RelateIQ, Spotify, Tutum
 
@@ -45,7 +49,7 @@ These images can either be defined by Dockerfiles or by commiting a container. W
 
 #### Base images
 
-* [phusion/baseimage-docker](http://phusion.github.io/baseimage-docker/), comes with init processes for syslog-ng, cron daemon, sshd, runit
+* [phusion/baseimage-docker](http://phusion.github.io/baseimage-docker/), comes with init processes for syslog-ng, cron daemon, sshd, runit. **Attention:** It is highly [discussable](https://news.ycombinator.com/item?id=7951042) if adding sshd is a good idea. Out of security reasons *nsenter* would probably be the way to go…
 	* Github: [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker)
 	* Docker registry: [phusion/baseimage](https://registry.hub.docker.com/u/phusion/baseimage/)
 
@@ -93,14 +97,14 @@ Simple example:
 	* Ctrl-\ – to detach with a stack trace
 * `docker wait` - blocks until container stops
 * `docker remove <container name>`
-* `docker run -t -i -p 8080:80 kristofdm/lamp /bin/bash`
+* `docker run -t -i -p 8080:80 <yourname>/apache2 /bin/bash`
 	* `docker run` - means execute the run command
-	* `-t` - means that we want a tty to be applied
-	* `-i` - means that we want to be able to interact with our container
-	* `-p` - port mapping! host_port:container_port. Our websites will be available at localhost:8080
-	* `kristofdm/lamp` is a simple LAMP image
+	* `-t` - means that you want a tty to be applied
+	* `-i` - means that you want to be able to interact with your container
+	* `-p` - port mapping! host_port:container_port. Your website will be available at localhost:8080
+	* `<yourname>/apache2` is a simple Apache2 image
 	* `bin/bash` is the command that the container will execute
-* `docker run -p 8080:80 -v /home/drupal-7.28:/var/www/ kristofdm/drupal:latest /start.sh`
+* `docker run -p 8080:80 -v /home/apache2/var/www/ <yourname>/apache2:latest /start.sh`
 	* `-v` - stands for volume. In this case, a volume shared between the host and the container.
 * If you want a transient container, `docker run -rm` will remove the container after it stops.
 
@@ -116,8 +120,6 @@ Simple example:
 * `docker diff` - shows changed files in the container's FS.
 
 ### Import / Export
-
-There does not seem to be a way to use Docker directly to import files into a container's filesystem. The closest thing is to mount a host file or directory as a data volume and copy it from inside the container.
 
 * `docker cp` - copies files or folders out of a container's filesystem.
 * `docker export` - turns container filesystem into tarball.
@@ -192,7 +194,9 @@ Docker uses the **Dockerfile** to build images. The build process is initiated b
 
 * `docker login` - login to your Docker Hub account. Your authentication credentials will be stored in the .dockercfg authentication file in your home directory.
 
-### Automated Builds
+### Deployments
+
+#### Automated Builds
 
 1. Create a [Docker Hub](https://hub.docker.com) account and login.
 2. Link your GitHub or BitBucket account through the ["Link Accounts"](https://registry.hub.docker.com/account/accounts/) menu.
@@ -206,6 +210,13 @@ Docker uses the **Dockerfile** to build images. The build process is initiated b
 Once the Automated Build is configured it will automatically trigger a build and, in a few minutes, you should see your new Automated Build on the [Docker Hub](https://hub.docker.com) Registry. It will stay in sync with your GitHub and BitBucket repository until you deactivate the Automated Build.
 
 If you want to see the status of your [Automated Builds](https://registry.hub.docker.com/builds/), you can go to your Automated Builds page on the Docker Hub, and it will show you the status of your builds and their build history.
+
+#### AWS
+
+* Elastic Beanstalk
+	* [Deploying AWS Elastic Beanstalk Applications from Docker Containers](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html)
+* EC2
+	* [Docker on AWS EC2](https://docs.docker.com/installation/amazon/)
 
 ### Run you own Private Docker Image Repository
 
@@ -257,6 +268,27 @@ Usually you can not use *Shared Folders* with boot2docker. Though there are stil
 
 * [Running Docker with EC2](https://docs.docker.com/installation/amazon/)
 
+## Docker orchestration (untested)
+
+* Github: [spotify/helios](https://github.com/spotify/helios)
+* [CoreOS & fleet](https://coreos.com/using-coreos/systemd/)
+	* Video: [Automating Service Orchestration with Docker and CoreOS](https://www.openstack.org/summit/openstack-summit-atlanta-2014/session-videos/presentation/automating-service-orchestration-with-docker-and-coreos)
+* [Serf](http://www.serfdom.io)
+* [Flynn](https://flynn.io)
+* Github: [signalfuse/maestro-ng](https://github.com/signalfuse/maestro-ng)
+* [Deis](http://deis.io), builds on Docker and CoreOS
+* [Shipyard](http://shipyard-project.com)
+* Github: [progrium/dokku](https://github.com/progrium/dokku)
+* Github: [libswarm](https://github.com/docker/libswarm)
+* [decking](http://decking.io)
+* Github: [mesosphere/marathon](https://github.com/mesosphere/marathon)
+* Github: [newrelic/centurion](https://github.com/newrelic/centurion)
+* [tutum](https://www.tutum.co) (Webservice)
+* Github: [GoogleCloudPlatform/kubernetes](https://github.com/GoogleCloudPlatform/kubernetes)
+	* [Running Kubernetes Example on CoreOS, Part 1](https://coreos.com/blog/running-kubernetes-example-on-CoreOS-part-1/)
+	* [Running Kubernetes Example on CoreOS, Part 2](https://coreos.com/blog/running-kubernetes-example-on-CoreOS-part-2/)
+	* [Kubernetes and Vagrant](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/vagrant.md)
+
 ## Docker security
 
 Docker daemon runs with root privileges, which implies there are some issues that need extra care. Some interesting points include the following:
@@ -277,6 +309,7 @@ Some key Docker security features include the following:
 * [Docker security I: SELinux](http://opensource.com/business/14/7/docker-security-selinux)
 * Slideshare: [LXC, Docker, security: is it safe to run applications in Linux Containers?](http://de.slideshare.net/jpetazzo/is-it-safe-to-run-applications-in-linux-containers)
 * [Securing Docker’s Future with SELinux and the Open Source Way](https://www.openshift.com/blogs/securing-docker’s-future-with-selinux-and-the-open-source-way)
+* [An update on container support on Google Cloud Platform](http://googlecloudplatform.blogspot.de/2014/06/an-update-on-container-support-on-google-cloud-platform.html)
 
 ## Snippets unsorted
 
@@ -290,3 +323,4 @@ Some things I found as interesting but I did not manage to sort right now.
 These are still some things I have to learn about… (this is more or less a reminder to myself)
 
 * How does **nsenter** work?
+* How can I do continuous deployment on updated containers towards clients?
