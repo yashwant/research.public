@@ -2,7 +2,7 @@
 layout: post
 title: "Docker Container Virtualization"
 slug: "research-docker-container-virtualization"
-date: 2014-08-30 11:00
+date: 2014-08-31 16:00
 comments: true
 categories: [virtualization]
 tags: [docker, virtualization, devops, container, lxc, libcontainer]
@@ -57,7 +57,7 @@ These images can either be defined by Dockerfiles or by commiting a container. W
 
 We need a way to share our images with other locations: enter the registry.
 
-Docker provides a [public hub]((https://hub.docker.com/)) where you can upload and share your images. You get one free private repository and unlimited public repositories. You could also host your own registry, more instructions can be found [here](http://blog.docker.com/2013/07/how-to-use-your-own-registry/).
+Docker provides a [public hub](https://hub.docker.com/) where you can upload and share your images. You get one free private repository and unlimited public repositories. You could also host your own registry, more instructions can be found [here](http://blog.docker.com/2013/07/how-to-use-your-own-registry/).
 
 Once the image is on a registry, you can run the same container on another location.
 
@@ -253,14 +253,20 @@ Boot2docker is a small script that helps download and setup a minimal Linux VM t
 
 #### Share folders with boot2docker
 
-Usually you can not use *Shared Folders* with boot2docker. Though there are still a few workarounds…
+Usually you can not use *Shared Folders* with boot2docker outside of the VM. Though there are still a few workarounds…
 
 * [dduportal / boot2docker](https://vagrantcloud.com/dduportal/boot2docker) - this a box for running boot2docker with a virtual box shared folder capability. Usage : `vagrant init dduportal/boot2docker && vagrant up`
 * through containers…
 	* access via NFS: `docker pull cpuguy83/nfs-server` and then `docker run -d --name nfs --privileged cpuguy83/nfs-server /path/to/share
 	* access via Samba `docker pull svendowideit/samba` and then `docker run svendowideit/samba data`
 
-### Option 2: Install CoreOS with Vagrant
+Share between containers is surely [possible](https://docs.docker.com/userguide/dockervolumes/).
+
+### Option 2: Install Kitematic
+
+* [Kitematic](https://kitematic.com)
+
+### Option 3: Install CoreOS with Vagrant
 
 * work in progress
 
@@ -278,6 +284,7 @@ Usually you can not use *Shared Folders* with boot2docker. Though there are stil
 * Github: [signalfuse/maestro-ng](https://github.com/signalfuse/maestro-ng)
 * [Deis](http://deis.io), builds on Docker and CoreOS
 * [Shipyard](http://shipyard-project.com)
+	* [Manage docker hosts with shipyard](http://serverascode.com/2014/05/25/docker-shipyard-multihost.html)
 * Github: [progrium/dokku](https://github.com/progrium/dokku)
 * Github: [libswarm](https://github.com/docker/libswarm)
 * [decking](http://decking.io)
@@ -288,6 +295,9 @@ Usually you can not use *Shared Folders* with boot2docker. Though there are stil
 	* [Running Kubernetes Example on CoreOS, Part 1](https://coreos.com/blog/running-kubernetes-example-on-CoreOS-part-1/)
 	* [Running Kubernetes Example on CoreOS, Part 2](https://coreos.com/blog/running-kubernetes-example-on-CoreOS-part-2/)
 	* [Kubernetes and Vagrant](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/vagrant.md)
+	* Video: [Google I/O 2014 - Containerizing the Cloud with Docker on Google Cloud Platform](https://www.youtube.com/watch?v=tsk0pWf4ipw)
+	* Github: [Azure/azure-kubernetes-visualizer](https://github.com/Azure/azure-kubernetes-visualizer) by Microsoft
+* Github: [ClusterHQ/flocker](https://github.com/ClusterHQ/flocker)
 
 ## Docker security
 
@@ -304,12 +314,19 @@ Some key Docker security features include the following:
 2. Apparmor, SELinux, GRSEC solutions can be used for an extra layer of security.
 3. There’s a capability to inherit security features from other containerization systems.
 
-### Interesting articles
+### Interesting…
+
+#### … articles
 
 * [Docker security I: SELinux](http://opensource.com/business/14/7/docker-security-selinux)
 * Slideshare: [LXC, Docker, security: is it safe to run applications in Linux Containers?](http://de.slideshare.net/jpetazzo/is-it-safe-to-run-applications-in-linux-containers)
 * [Securing Docker’s Future with SELinux and the Open Source Way](https://www.openshift.com/blogs/securing-docker’s-future-with-selinux-and-the-open-source-way)
 * [An update on container support on Google Cloud Platform](http://googlecloudplatform.blogspot.de/2014/06/an-update-on-container-support-on-google-cloud-platform.html)
+* Video: [Be a happier developer with Docker: Tricks of the trade Nicola Paolucci (Atlassian)](https://www.youtube.com/watch?v=XCVOxht34Hs&feature=youtu.be) **Done**
+
+#### … courses
+
+* [CloudAcademy: Getting started with Docker](https://cloudacademy.com/cloud-computing/courses/getting-started-with-docker/)
 
 ## Snippets unsorted
 
