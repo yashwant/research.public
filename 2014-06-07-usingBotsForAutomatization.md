@@ -34,15 +34,18 @@ These are the steps:
 
 Adapters are the interface to the service you want your hubot to run on.
 
-* Github: [Overview on available adapters](https://github.com/github/hubot/blob/master/docs/adapters.md) or at the [Hubot Script Catalog](https://hubot-script-catalog.herokuapp.com/)
-* Github: [Adapter: Gtalk](https://github.com/atmos/hubot-gtalk/): available in different versions as NPM.
-* Github: [Adapter XMPP](https://github.com/markstory/hubot-xmpp/wiki): available in different as NPM.
-* Github: [Adapter: IRC](https://github.com/nandub/hubot-irc): available in different versions as NPM.
-* Github: [Adapter: Twitter](https://github.com/mathildelemee/hubot-twitter): available in different versions as NPM.
+* Github: [Overview on available adapters](https://github.com/github/hubot/blob/master/docs/adapters.md)
+* Github: [Adapter: Gtalk](https://github.com/atmos/hubot-gtalk/)
+* Github: [Adapter XMPP](https://github.com/markstory/hubot-xmpp/wiki)
+* Github: [Adapter: IRC](https://github.com/nandub/hubot-irc)
+* Github: [Adapter: Twitter](https://github.com/mathildelemee/hubot-twitter)
+* Github: [Adapter: Minecraft](https://github.com/minefold/hubot-minecraft)
 
 There are a couple more [adapters available](https://github.com/github/hubot/wiki/) e.g. Twilio, Skype, Yammer etc.
 
 ### Interesting scripts
+
+You can get a complete overview at the [Hubot Script Catalog](https://hubot-script-catalog.herokuapp.com/).
 
 * [hackernews.coffee](https://github.com/github/hubot-scripts/blob/master/src/scripts/hackernews.coffee)  
 	* `hubot hn top <N>` - get the top N items on hacker news (or your favorite RSS feed)  
@@ -141,3 +144,4 @@ There are a couple more [adapters available](https://github.com/github/hubot/wik
 * Github: [github/janky](https://github.com/github/janky). Continuous integration server built on top of Jenkins and Hubot.
 * [Team Management with Hubot](http://blog.dobt.co/2014/01/28/team-management-with-hubot/)
 * [Hubot Deploy](http://www.travisberry.com/2012/02/hubot-deploy/) w/ Capistrano
+* [Hubot Deploy Github](https://speakerdeck.com/pengwynn/hubot-deploy-github)
