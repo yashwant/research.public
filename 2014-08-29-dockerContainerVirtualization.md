@@ -322,6 +322,7 @@ Share between containers is surely [possible](https://docs.docker.com/userguide/
 ## Docker orchestration (untested)
 
 * **[Fig](http://www.fig.sh)** is an open source tool developed by the Orchard team and then acquired by Docker, Inc..
+	* Video: [Orchestrating Docker containers in production using Fig](https://www.youtube.com/watch?v=SEtRg8siQWw)
 * **[Consul](http://www.consul.io)** by Hashicorp (Vagrant etc.) is a distributed, highly available service discovery tool. It allows services to register themselves with Consul and share that registration information in a highly-available and distributed manner. It is also interesting because it provides both a DNS-based query interface and a HTTP-based API to query the information. The choice of interfaces, especially the DNS-based interface, allows you to easily drop Consul into your existing environment.
 * **[Apache Mesos](http://mesos.apache.org)** is a highly-available cluster management tool. Not specifically designed to work with Docker it instead has an interface, [Deimos](https://github.com/mesosphere/deimos), to allow you to use Docker container with Mesos.
 * Github: **[spotify/helios](https://github.com/spotify/helios)** is a Docker orchestration patform for deploying and managing containers across an entire fleet. It creates a "job" abstraction that you can deploy to one or more Helios hosts running Docker.
