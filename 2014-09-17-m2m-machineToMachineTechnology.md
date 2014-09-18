@@ -75,6 +75,21 @@ MQTT is a publish/subscribe messaging system that allows clients to publish mess
 
 * [Official website](http://mqtt.org)
 * [MQTT and CoAP, IoT Protocols](http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php)
+* [Building MongoDB Into Your Internet of Things: A Tutorial](https://blog.compose.io/building-mongodb-into-your-internet-of-things-a-tutorial/)
+
+At a glance…
+
+* Application-layer protocol
+* Runs on top TCP
+* Binary-wire protocol
+* No message queue albeit the name
+* Publish/subscribe pattern
+* Designed for resource-constrained devices
+* UTF-8 encoded strings (since V3.1)
+* Payload agnostic
+* Keep-Alive timer
+* QoS
+* Port numbers: 1883 for MQTT, 8883 for MQTT over SSL
 
 ### CoAP
 
@@ -113,19 +128,24 @@ AMQP is focused on not losing messages. Communications from the publishers to ex
 
 #### Projects
 
+* [Official website](http://www.skynet.im)
 * Github: [octoblu/meshblu](https://github.com/octoblu/meshblu)
 * Github: [octoblu/gateblu](https://github.com/octoblu/gateblu) – Octoblu Gateway for your LAN-based IoT devices 
 http://skynet.im
+* Github: [octoblu/microblu_mqtt](https://github.com/octoblu/microblu_mqtt). Microblu OS (firmware for Arduino-compatible devices) using MQTT.
+* Github: [octoblu/octopi](https://github.com/octoblu/octopi) - run a private Skynet server on your Raspberry Pi and connect it to e.g. your Arduino clients
 * [octoblu/skynet-docker](https://github.com/octoblu/skynet-docker/blob/master/Dockerfile)
+* Github: [octoblu/examples](https://github.com/octoblu/examples). Collection of node.js arduino and npm skynet examples.
 * [ElectricImp-SkyNet](https://github.com/electricimp/reference/tree/master/webservices/skynet), [electric imp](https://electricimp.com/)
 * Github [Octoblu Pebble App](https://github.com/octoblu/octoblu-pebble)
 * [Skynet NPM plugins](https://www.npmjs.org/search?q=skynet-plugin)
-* [octoblu/octopi](https://github.com/octoblu/octopi) - run a private Skynet server on your Raspberry Pi and connect it to e.g. your Arduino clients
+
 
 #### Tutorials
 
 * Video: [Using @SKYNETim to track Heartbeats and Geolocation #HackIoT](https://www.youtube.com/watch?v=UVLarHyJPBY)
 * [YouTube videos](https://www.youtube.com/results?search_query=meshblu)
+* [Connect Hue Bulbs to SkyNet](https://medium.com/@chrismatthieu/connect-hue-bulbs-to-skynet-8d5d15511001)
 
 ### Other platforms
 
@@ -162,6 +182,7 @@ Erlang, enterprise quality, larger footprint, MQTT plugin to AMQP broker
 Mosca is a node.js mqtt broker.
 
 * Github: Dockerfile [mcollina/mosca](https://github.com/mcollina/mosca)
+* Dockerfile: [matteocollina / mosca](https://registry.hub.docker.com/u/matteocollina/mosca/)
 * [Official website](http://www.mosca.io/)
 
 #### Other brokers
@@ -184,6 +205,7 @@ Mosca is a node.js mqtt broker.
 	* Socket.io
 	* Firmata if using with an Arduino
 * [Koneki](http://projects.eclipse.org/projects/technology.koneki)
+* Github: [adamvr / MQTT.js](https://www.github.com/adamvr/MQTT.js). An MQTT librar for node.js.
 
 ## Events
 
